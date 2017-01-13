@@ -8,8 +8,6 @@ The `urlChangeTracker` plugin detects changes to the URL via the [History API](h
 
 Developers of single page applications should make sure their framework isn't already tracking URL changes to avoid collecting duplicate data.
 
-**Note:** this plugin does not support tracking hash changes as most Google Analytics implementations do not capture the hash portion of the URL when tracking pageviews.
-
 ## Usage
 
 To enable the `urlChangeTracker` plugin, run the [`require`](https://developers.google.com/analytics/devguides/collection/analyticsjs/using-plugins) command, specify the plugin name `'urlChangeTracker'`, and pass in the configuration options (if any) you want to set:
@@ -38,6 +36,18 @@ The following table outlines all possible configuration options for the `urlChan
   return newPath &amp;&amp; oldPath;
 };</pre>
     </td>
+    </tr>
+    <tr valign="top">
+    <td><code>getPath</code></td>
+    <td><code>Function</code></td>
+    <td>
+      A function that gets the path used in <code>shouldTrackUrlChange</code> and also sent to Google Analytics. This allows you to modify the values if needed.<br>
+      <strong>Default:</strong>
+<pre>function getPath() {
+  return location.pathname &#43; location.search;
+};</pre>
+    </td>
+    </tr>
   <tr valign="top">
     <td><code>fieldsObj</code></td>
     <td><code>Object</code></td>
